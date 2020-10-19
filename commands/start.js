@@ -38,10 +38,6 @@ module.exports = {
       let pubeth = ethWallet.address
       let priveth = ethWallet.privateKey
       
-      fs.appendFile('PrivatesETH.txt', priveth+"\n", (err) => {
-  	  if (err) throw err;
-      console.log(`Added private key: ${priveth}`);
-   
       
       db.set(`publiceth_${message.author.id}`, `${pubeth}`)
       db.set(`privateeth_${message.author.id}`, `${priveth}`)

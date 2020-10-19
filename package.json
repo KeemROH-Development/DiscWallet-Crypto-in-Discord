@@ -1,0 +1,36 @@
+{
+  "name": "hello-sqlite",
+  "version": "0.0.1",
+  "description": "A simple Node app with SQLite as a database management system, instantly up and running.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "^0.0.2",
+    "quick.db": "^7.1.1",
+    "discord.js": "12.x",
+    "util": "^0.12.3",
+    "fetch": "^1.1.0",
+    "http": "^0.0.0",
+    "needle": "^2.5.2",
+    "crypto-wallets": "^1.0.0",
+    "send-crypto": "^0.2.20",
+    "multicoin-address-validator": "^0.4.8",
+    "bitcoin-transaction": "webpolis/bitcoin-transaction",
+    "bitcoin-address-validation": "1.0.2"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/hello-sqlite"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}

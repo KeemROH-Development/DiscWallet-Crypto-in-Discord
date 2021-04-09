@@ -13,7 +13,7 @@ module.exports = {
   admin: false,
   async execute(message, args, client) {
     let isstarted = db.fetch(`isstarted_${message.author.id}`);
-    if (isstarted && args[0] != "eth".toLowerCase()) {
+    if (isstarted && args[0].toLowerCase() != "eth") {
       return message.channel.send("Hello, you have already created a wallet, if you want to see your balance or see your address you may run the `d!bal` command, if you have misplaced your private key please run the d!private command!")
     } else if(!isstarted) {
        
@@ -31,7 +31,7 @@ module.exports = {
        )
       
      
-    } else if(args[0] === "eth".toLowerCase()) {
+    } else if(args[0].toLowerCase() === "eth") {
       let isstartedeth = db.fetch(`isstartedeth_${message.author.id}`)
       if(isstartedeth) return message.channel.send(`Hello, it seems you have already created an ETH wallet, if you want to see your credentials do \`d!private eth\` or if you want to see how much ETH you have do \`d!bal eth\`!`)
       var ethWallet = cw.generateWallet('ETH');
@@ -48,6 +48,25 @@ module.exports = {
       return message.channel.send("Hello, thank you for choosing DiscWallet! I'll DM you your wallet info and you can use the `d!bal eth` command to see your eth address or to see your balance in eth or USD!\n\nNote: If you did not get a dm with your credentials make sure you enable them then run: `d!private eth`").then(
        message.author.send(`Hello, thank you for choosing DiscWallet, here are your credentials:\Eth Address: ${pubeth}\nPrivate Address (Import form): ${priveth}\n\nYou can always see this again by running \`d!private eth\` to see how much ETH / USD is in your wallet run \`d!balance eth or d!bal eth\` ` )) 
        });
+    } else if(args[0].toLowerCase() === "xmr") {
+      let isstartedxmr = db.fetch(`isstartedxmr_${message.author.id}`)
+      if(isstartedxmr) return message.channel.send(`Hello, it seems you have already created a XMR wallet, if you want to see your credentials do \`d!private xmr\` or if you want to see how much XMR you have do \`d!bal xmr\`!`)
+      cw.generateWallet('XMR').then(function(moneroWallet){
+    let pubxmr = moneroWallet.address
+    let privxmr = moneroWallet.privateKey
+    
+      db.set(`publicxmr_${message.author.id}`, `${pubeth}`)
+      db.set(`privatexmr_${message.author.id}`, `${priveth}`)
+      db.set(`isstartedxmr_${message.author.id}`, "true")
+        
+      
+        
+      return message.channel.send("Hello, thank you for choosing DiscWallet! I'll DM you your wallet info and you can use the `d!bal xmr` command to see your xmr address or to see your balance in xmr or USD!\n\nNote: If you did not get a dm with your credentials make sure you enable them then run: `d!private xmr`").then(
+       message.author.send(`Hello, thank you for choosing DiscWallet, here are your credentials:\XMR Address: ${pubxmr}\nPrivate Address (Import form): ${privxmr}\n\nYou can always see this again by running \`d!private xmr\` to see how much XMR / USD is in your wallet run \`d!balance xmr or d!bal xmr\` ` )) 
+    
+    
+ 
+});
     }
   }
 };
